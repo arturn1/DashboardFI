@@ -25,6 +25,9 @@ builder.Services.AddDatabaseConfiguration(connectionString);
 
 var app = builder.Build();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsProduction())
 {
@@ -44,6 +47,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapFallbackToFile("/index.html");
 
 #region Apps
 #endregion

@@ -5,16 +5,15 @@ namespace Domain.Entities
     {
         public ApplicationsEntity() { }
         
-        public ApplicationsEntity(string Name, string Environment)
+        public ApplicationsEntity(string Name)
         {
             
             this.Name = Name;
-            this.Environment = Environment;
 
         }
         
         public string Name { get; set; }
-        public string Environment { get; set; }
+        public List<EnvironmentEntity> Environments { get; set; }
 
     }
 

@@ -9,7 +9,7 @@ namespace Infrastructure.Configuration
         public static IServiceCollection AddDatabaseConfiguration(this IServiceCollection services, string connectionString)
         {
             services
-                .AddDbContext<ApplicationDbContext>(b => b.UseSqlServer(connectionString));
+                .AddDbContext<ApplicationDbContext>(b => b.UseInMemoryDatabase("localDb"));
 
 
             return services;

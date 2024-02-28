@@ -11,6 +11,7 @@ namespace Infrastructure.Data
         }
 
         #region DbSet
+        public DbSet<VersionEntity> Version { get; set; }
         public DbSet<TasksEntity> Tasks { get; set; }
         public DbSet<EnvironmentEntity> Environment { get; set; }
         public DbSet<ApplicationsEntity> Applications { get; set; }

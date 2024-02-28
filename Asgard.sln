@@ -2,22 +2,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{BAC1D319-0FA4-4B58-BB97-0A2DE4DC4B05}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A84DFFAB-6623-4523-9B9B-92C9F87EE47D} = {A84DFFAB-6623-4523-9B9B-92C9F87EE47D}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{0E3E91A1-264D-4E18-96F5-8F90FC38D13B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{BEBFE9F1-47C3-43F8-8C46-62BCE974EB48}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC", "IoC\IoC.csproj", "{DA39047A-8547-4CAA-A6FA-944E7755162F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BAC1D319-0FA4-4B58-BB97-0A2DE4DC4B05} = {BAC1D319-0FA4-4B58-BB97-0A2DE4DC4B05}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{8795B076-1C58-448C-8EAD-CF5D79A46058}"
 EndProject
-#region newProject
-#endregion
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "client", "Client\client.esproj", "{A84DFFAB-6623-4523-9B9B-92C9F87EE47D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,8 +43,12 @@ Global
 		{8795B076-1C58-448C-8EAD-CF5D79A46058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8795B076-1C58-448C-8EAD-CF5D79A46058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8795B076-1C58-448C-8EAD-CF5D79A46058}.Release|Any CPU.Build.0 = Release|Any CPU
-		#region newCPU
-		#endregion
+		{A84DFFAB-6623-4523-9B9B-92C9F87EE47D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84DFFAB-6623-4523-9B9B-92C9F87EE47D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84DFFAB-6623-4523-9B9B-92C9F87EE47D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A84DFFAB-6623-4523-9B9B-92C9F87EE47D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84DFFAB-6623-4523-9B9B-92C9F87EE47D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A84DFFAB-6623-4523-9B9B-92C9F87EE47D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
