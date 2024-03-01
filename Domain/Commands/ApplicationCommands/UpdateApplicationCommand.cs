@@ -4,21 +4,23 @@ using Domain.Validation;
 namespace Domain.Commands 
 {
 
-    public class CreateVersionCommand : ValidatableTypes, ICommand
+    public class UpdateApplicationCommand : ValidatableTypes, ICommand
     {
-        public CreateVersionCommand(string Name, DateTime ReleaseDate)
+        public UpdateApplicationCommand(Guid id, string Name)
         {
-            
+            this.Id = id;
             this.Name = Name;
-            this.ReleaseDate = ReleaseDate;
 
         }
+
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public DateTime ReleaseDate { get; set; }
 
 
         public bool IsCommandValid()
         {
+            ValidateGuidNotEmpty(Id, "Id");
+            
             return this.isValid;
         }
     }

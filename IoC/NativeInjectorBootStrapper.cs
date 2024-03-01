@@ -2,7 +2,6 @@ using Application.Dictionary;
 using Domain.Handlers;
 using Domain.Helpers;
 using Domain.Repositories;
-using Infrastructure.Data;
 using Infrastructure.Repositories;
 
 
@@ -16,17 +15,17 @@ namespace IoC
         {
 
             #region Repositories
+            services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IVersionRepository, VersionRepository>();
-            services.AddScoped<ITasksRepository, TasksRepository>();
             services.AddScoped<IEnvironmentRepository, EnvironmentRepository>();
-            services.AddScoped<IApplicationsRepository, ApplicationsRepository>();
+            services.AddScoped<IApplicationRepository, ApplicationRepository>();
             #endregion
 
             #region Handlers
+            services.AddTransient<TaskHandler>();
             services.AddTransient<VersionHandler>();
-            services.AddTransient<TasksHandler>();
             services.AddTransient<EnvironmentHandler>();
-            services.AddTransient<ApplicationsHandler>();
+            services.AddTransient<ApplicationHandler>();
             #endregion
 
             #region Services

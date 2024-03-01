@@ -11,10 +11,10 @@ namespace Infrastructure.Data
         }
 
         #region DbSet
+        public DbSet<TaskEntity> Task { get; set; }
         public DbSet<VersionEntity> Version { get; set; }
-        public DbSet<TasksEntity> Tasks { get; set; }
         public DbSet<EnvironmentEntity> Environment { get; set; }
-        public DbSet<ApplicationsEntity> Applications { get; set; }
+        public DbSet<ApplicationEntity> Application { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

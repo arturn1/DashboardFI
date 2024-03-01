@@ -4,19 +4,17 @@ using Domain.Validation;
 namespace Domain.Commands 
 {
 
-    public class UpdateVersionCommand : ValidatableTypes, ICommand
+    public class UpdateTaskCommand : ValidatableTypes, ICommand
     {
-        public UpdateVersionCommand(Guid id, string Name, DateTime ReleaseDate)
+        public UpdateTaskCommand(Guid id, string Tasks)
         {
             this.Id = id;
-            this.Name = Name;
-            this.ReleaseDate = ReleaseDate;
+            this.Tasks = Tasks;
 
         }
 
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public string Tasks { get; set; }
 
 
         public bool IsCommandValid()

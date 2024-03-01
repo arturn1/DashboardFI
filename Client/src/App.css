@@ -13,7 +13,16 @@ tr:nth-child(odd) {
     background: #FFF;
 }
 
-th, td {
+th,
+td {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.w-custom {
+    width: -webkit-fill-available;
+}
+
+.card__container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
