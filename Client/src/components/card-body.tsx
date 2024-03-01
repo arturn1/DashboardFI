@@ -9,7 +9,7 @@ export function CardBodyComponent() {
                 <CardDescription>Deploy your new project in one-click.</CardDescription>
             </CardHeader>
             <CardContent>
-                <h1>Content</h1>
+                <h1>Azure</h1>
             </CardContent>
             <CardFooter className="flex flex-col">
                 <Button className="my-2" variant="outline">Solicitar deploy</Button>
