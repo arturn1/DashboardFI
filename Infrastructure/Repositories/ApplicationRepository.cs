@@ -11,9 +11,9 @@ namespace Infrastructure.Repositories
         IApplicationRepository
     {
 
-        private readonly ApplicationDbContext _applicationDb;
+        private readonly ApplicationContext _applicationDb;
 
-        public ApplicationRepository(ApplicationDbContext context, bool SaveChanges = true) : base(context, SaveChanges)
+        public ApplicationRepository(ApplicationContext context, bool SaveChanges = true) : base(context, SaveChanges)
         {
             _applicationDb = context;
         }

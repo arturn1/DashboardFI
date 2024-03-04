@@ -9,6 +9,6 @@ namespace Infrastructure.Repositories
         RepositoryBase<VersionEntity>,
         IVersionRepository
     {
-        public VersionRepository(ApplicationDbContext context, bool SaveChanges = true) : base(context, SaveChanges) { }
+        public VersionRepository(ApplicationContext context, bool SaveChanges = true) : base(context, SaveChanges) { }
     }
 }

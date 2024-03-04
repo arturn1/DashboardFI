@@ -12,10 +12,12 @@ namespace Domain.Handlers
     {
         private readonly ITaskRepository _TaskRepository;
         private readonly IMapper _mapper;
-        public TaskHandler(ITaskRepository TaskRepository, IMapper mapper)
+        private readonly IVersionRepository _versionRepository;
+        public TaskHandler(ITaskRepository TaskRepository, IMapper mapper, IVersionRepository versionRepository)
         {
             _TaskRepository = TaskRepository;
             _mapper = mapper;
+            _versionRepository = versionRepository;
         }
 
         public async Task<ICommandResult> Handle(CreateTaskCommand command)
@@ -27,8 +29,9 @@ namespace Domain.Handlers
                 return new CommandResult(command.Errors, HttpStatusCode.BadRequest);
             }
 
+            var version = await _versionRepository.GetByIdAsync(command.VersionId);
 
-            TaskEntity entity = new ();
+            TaskEntity entity = new (version);
             _mapper.Map(command, entity);
 
             await _TaskRepository.PostAsync(entity);

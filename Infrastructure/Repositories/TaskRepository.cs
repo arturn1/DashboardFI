@@ -9,6 +9,6 @@ namespace Infrastructure.Repositories
         RepositoryBase<TaskEntity>,
         ITaskRepository
     {
-        public TaskRepository(ApplicationDbContext context, bool SaveChanges = true) : base(context, SaveChanges) { }
+        public TaskRepository(ApplicationContext context, bool SaveChanges = true) : base(context, SaveChanges) { }
     }
 }

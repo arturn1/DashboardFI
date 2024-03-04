@@ -1,3 +1,4 @@
 export interface TaskModel {
-    tasks: string;
+    name: string;
+    description: string
 }

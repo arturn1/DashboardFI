@@ -3,6 +3,6 @@ import { TaskModel } from "./TaskModel";
 export interface VersionModel {
     name: string;
     releaseDate: Date;
-    tasks: TaskModel;
+    tasks: TaskModel[];
     id: string
 }

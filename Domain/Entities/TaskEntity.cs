@@ -12,14 +12,16 @@ namespace Domain.Entities
             this.Version = Version;
         }
 
-        public TaskEntity(string Tasks)
+        public TaskEntity(string Name, string Description)
         {
 
-            this.Tasks = Tasks;
+            this.Name = Name;
+            this.Description  = Description;
 
         }
 
-        public string Tasks { get; set; }
+        public string Name { get; set; }
+        public string? Description { get; set; } = "";
         [JsonIgnore]
         public VersionEntity Version { get; set; }
 

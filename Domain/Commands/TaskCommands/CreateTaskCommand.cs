@@ -6,13 +6,15 @@ namespace Domain.Commands
 
     public class CreateTaskCommand : ValidatableTypes, ICommand
     {
-        public CreateTaskCommand(string Tasks, Guid versionId)
+        public CreateTaskCommand(string Name, Guid versionId, string Description = "")
         {
 
-            this.Tasks = Tasks;
-            VersionId = versionId;
+            this.Name = Name;
+            this.VersionId = versionId;
+            this.Description = Description;
         }
-        public string Tasks { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
         public Guid VersionId { get; set; }
 
 

@@ -9,6 +9,6 @@ namespace Infrastructure.Repositories
         RepositoryBase<EnvironmentEntity>,
         IEnvironmentRepository
     {
-        public EnvironmentRepository(ApplicationDbContext context, bool SaveChanges = true) : base(context, SaveChanges) { }
+        public EnvironmentRepository(ApplicationContext context, bool SaveChanges = true) : base(context, SaveChanges) { }
     }
 }

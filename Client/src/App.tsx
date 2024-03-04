@@ -16,7 +16,7 @@ function App() {
     return (
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
             <div>
-                <div className="grid card__container gap-24 mx-20">
+                <div className="grid card__container gap-24 mx-5">
                     {
                         apps.map((app: ApplicationModel) => (
                             <CardComponent prop={app} key={app.id} />

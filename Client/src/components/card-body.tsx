@@ -19,6 +19,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { useState } from "react";
+import { TaskModel } from "@/models/TaskModel";
 
 interface ICardBodyComponent {
     prop: ApplicationModel
@@ -32,8 +33,9 @@ export const CardBodyComponent = (app: ICardBodyComponent) => {
     const { name, environments } = app.prop
     const i = app.index
 
-    const links = environments[i].links.split(';');
-    let tasks: string[] = environments[i].versions[selected].tasks[0]?.tasks.split(';');
+    const links = environments[i]?.links.split(';');
+    const tasks: TaskModel[] = environments[i].versions[selected]?.tasks;
+
 
     const versionsSelect = environments[i].versions.map((version, index) => {
         return (
@@ -43,22 +45,19 @@ export const CardBodyComponent = (app: ICardBodyComponent) => {
 
     const GetValue = (e: number) => {
         useSelected(e);
-        tasks = environments[i].versions[selected].tasks[0]?.tasks.split(';');
     }
-
-    console.log(tasks)
 
     return (
         <CardContent>
             <CardHeader>
-                <a href={environments[i].link} className="mb-2">
+                <a href={environments[i]?.link} className="mb-2">
                     <CardTitle>{name} - {environments[i].name}</CardTitle>
                 </a>
                 <div className="flex items-center justify-evenly">
                     <CardDescription >Versão:</CardDescription>
-                    <Select onValueChange={(e) => GetValue(e)}>
+                    <Select onValueChange={(e) => GetValue(parseInt(e))}>
                         <SelectTrigger className="w-[100px] h-[30px]">
-                            <SelectValue placeholder={environments[i].versions[0].name} />
+                            <SelectValue placeholder={environments[i].versions[0]?.name ?? ""} />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
@@ -67,7 +66,10 @@ export const CardBodyComponent = (app: ICardBodyComponent) => {
                         </SelectContent>
                     </Select>
                 </div>
-                <CardDescription>{format(environments[i]?.versions[selected].releaseDate, 'dd/MM/yyyy')}</CardDescription>
+                {environments[i]?.versions.length > 0 ?
+                    <CardDescription>{format(environments[i]?.versions[selected].releaseDate, 'dd/MM/yyyy') ?? ""}</CardDescription>
+                    : null
+                }
             </CardHeader>
             <CardContent className="flex flex-col">
                 <a href={links[0]}>AppService</a>
@@ -82,11 +84,13 @@ export const CardBodyComponent = (app: ICardBodyComponent) => {
                     <DialogContent>
                         <DialogHeader>
                             <DialogTitle>Tarefas</DialogTitle>
-                            {tasks?.map((task: string, index) =>
-                                <DialogDescription key={index}>
-                                    {task}
-                                </DialogDescription>
-                            )}
+                            {
+                                tasks.map((task: TaskModel, index) =>
+                                    <DialogDescription key={index}>
+                                        {task.name}
+                                    </DialogDescription>
+                                )
+                            }
                         </DialogHeader>
                     </DialogContent>
                 </Dialog>

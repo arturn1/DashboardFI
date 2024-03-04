@@ -8,8 +8,6 @@ export const useApps = () => {
         const response = await fetch(
             "https://localhost:7213/api/application"
         ).then(resp => resp.json());
-        //console.log("resp:", response);
-
         setApps(response.data);
     };
 

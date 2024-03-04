@@ -4,6 +4,9 @@ using Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string connectionString =builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDatabaseConfiguration(connectionString);
+
 builder.Services.AddIoc();
 builder.Services.AddControllers();
 
@@ -17,8 +20,6 @@ builder.Services.AddSwagger(configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string connectionString = Environment.GetEnvironmentVariable("APP_DATABASE_URL", EnvironmentVariableTarget.Machine) ?? builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDatabaseConfiguration(connectionString);
 
 #region Builder
 #endregion
