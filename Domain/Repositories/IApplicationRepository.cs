@@ -3,5 +3,8 @@ using Domain.Repositories.Contracts;
 
 namespace Domain.Repositories
 {
-    public interface IApplicationRepository : IRepositoryBase<ApplicationEntity> { }
+    public interface IApplicationRepository : IRepositoryBase<ApplicationEntity>
+    {
+        Task<List<ApplicationEntity>> GetAllIncludes();
+    }
 }

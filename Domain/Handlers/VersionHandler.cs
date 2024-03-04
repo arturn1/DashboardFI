@@ -12,10 +12,12 @@ namespace Domain.Handlers
     {
         private readonly IVersionRepository _VersionRepository;
         private readonly IMapper _mapper;
-        public VersionHandler(IVersionRepository VersionRepository, IMapper mapper)
+        private readonly IEnvironmentRepository _environmentRepository;
+        public VersionHandler(IVersionRepository VersionRepository, IMapper mapper, IEnvironmentRepository environmentRepository)
         {
             _VersionRepository = VersionRepository;
             _mapper = mapper;
+            _environmentRepository = environmentRepository;
         }
 
         public async Task<ICommandResult> Handle(CreateVersionCommand command)
@@ -28,7 +30,8 @@ namespace Domain.Handlers
             }
 
 
-            VersionEntity entity = new ();
+            var environment = await _environmentRepository.GetByIdAsync(command.EnvironmentId);
+            VersionEntity entity = new(environment);
             _mapper.Map(command, entity);
 
             await _VersionRepository.PostAsync(entity);
@@ -55,7 +58,7 @@ namespace Domain.Handlers
             await _VersionRepository.UpdateAsync(entity);
 
             return new CommandResult(entity, HttpStatusCode.Created);
-            
+
         }
 
     }

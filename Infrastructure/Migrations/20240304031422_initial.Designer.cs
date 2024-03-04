@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240301012344_initial")]
+    [Migration("20240304031422_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -138,7 +138,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.EnvironmentEntity", b =>
                 {
                     b.HasOne("Domain.Entities.ApplicationEntity", "Application")
-                        .WithMany()
+                        .WithMany("Environments")
                         .HasForeignKey("ApplicationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -149,7 +149,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.TaskEntity", b =>
                 {
                     b.HasOne("Domain.Entities.VersionEntity", "Version")
-                        .WithMany()
+                        .WithMany("Tasks")
                         .HasForeignKey("VersionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -160,12 +160,27 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.VersionEntity", b =>
                 {
                     b.HasOne("Domain.Entities.EnvironmentEntity", "Environment")
-                        .WithMany()
+                        .WithMany("Versions")
                         .HasForeignKey("EnvironmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Environment");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ApplicationEntity", b =>
+                {
+                    b.Navigation("Environments");
+                });
+
+            modelBuilder.Entity("Domain.Entities.EnvironmentEntity", b =>
+                {
+                    b.Navigation("Versions");
+                });
+
+            modelBuilder.Entity("Domain.Entities.VersionEntity", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

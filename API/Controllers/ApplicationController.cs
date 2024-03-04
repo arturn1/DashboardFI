@@ -22,7 +22,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            var models = await _ApplicationRepository.GetAllAsync();
+            var models = await _ApplicationRepository.GetAllIncludes();
 
             return Ok(new CommandResult(models, HttpStatusCode.OK));
         }
@@ -31,7 +31,7 @@ namespace API.Controllers
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var models = await _ApplicationRepository.GetByIdAsync(id);
-            if (models == null) return NotFound(_defaultDictionary.Response["NotFound"]); 
+            if (models == null) return NotFound(_defaultDictionary.Response["NotFound"]);
 
             return Ok(new CommandResult(models, HttpStatusCode.OK));
         }
@@ -56,8 +56,8 @@ namespace API.Controllers
         public async Task<IActionResult> DeleteByIdAsync(Guid id)
         {
             var entity = await _ApplicationRepository.GetByIdAsync(id);
-            if (entity == null) return NotFound(_defaultDictionary.Response["NotFound"]); 
-                
+            if (entity == null) return NotFound(_defaultDictionary.Response["NotFound"]);
+
             _ApplicationRepository.DeleteObject(entity);
 
             var result = new { data = "Removed success!!!" };

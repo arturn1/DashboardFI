@@ -9,16 +9,26 @@ import {
 // import { CardBodyComponent } from "./card-body"
 import '../App.css'
 import { CardBodyComponent } from "./card-body"
+import { ApplicationModel } from "@/models/ApplicationModel"
 
-export function CardComponent() {
+interface ICardBodyComponent {
+    prop: ApplicationModel
+    key: string
+}
+
+export const CardComponent = (app: ICardBodyComponent) => {
+
+    const { environments } = app.prop
+
+
     return (
         <Card className="flex items-center content-center">
             <CardContent className="w-custom">
                 <Carousel className="">
                     <CarouselContent>
-                        {Array.from({ length: 5 }).map((_, index) => (
+                        {environments.map((_, index) => (
                             <CarouselItem key={index} className="w-auto">
-                                <CardBodyComponent />
+                                <CardBodyComponent prop={app.prop} index={index} />
                             </CarouselItem>
                         ))}
                     </CarouselContent>
